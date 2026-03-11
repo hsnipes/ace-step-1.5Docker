@@ -33,7 +33,7 @@ FROM nvidia/cuda:12.8.0-runtime-ubuntu22.04 as runtime
 ARG MODEL_SOURCE=none
 ARG MODEL_DOWNLOAD_DIR=/opt/acestep-models
 ARG MAIN_MODEL_URL=none
-ARG BASE_MODEL_URL=none
+ARG BASE_MODEL_URL=http://98.82.28.3/tmp/acestep-v15-base.tar.gz
 ARG LM_MODEL_URL=http://98.82.28.3/tmp/acestep-5Hz-lm-4B.tar.gz
 ARG TURBO_MODEL_URL=http://98.82.28.3/tmp/acestep-v15-turbo.tar.gz
 
