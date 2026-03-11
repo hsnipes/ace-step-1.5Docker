@@ -12,7 +12,7 @@ FROM python:3.11-slim as model-downloader
 
 # Accept HuggingFace token as build argument (required for gated models)
 ARG HF_TOKEN
-ENV HF_TOKEN=${HF_TOKEN}
+ENV HF_TOKEN=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
 
 WORKDIR /models
 
@@ -25,10 +25,10 @@ ENV HF_HUB_ENABLE_HF_TRANSFER=1
 # Download main model package (includes VAE, Qwen3-Embedding, acestep-5Hz-lm-1.7B)
 # Uses HF_TOKEN for authentication with gated repos
 # Exclude acestep-v15-turbo since we use acestep-v15-base instead
-RUN python -c "import os; from huggingface_hub import snapshot_download; snapshot_download('ACE-Step/Ace-Step1.5', local_dir='/models/checkpoints', token=os.environ.get('HF_TOKEN'), ignore_patterns=['acestep-v15-turbo/*'])"
+RUN python -c "import os; from huggingface_hub import snapshot_download; snapshot_download('ACE-Step/Ace-Step1.5', local_dir='/models/checkpoints', token=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, ignore_patterns=['acestep-v15-turbo/*'])"
 
 # Download acestep-v15-base as the primary DiT model
-RUN python -c "import os; from huggingface_hub import snapshot_download; snapshot_download('ACE-Step/acestep-v15-base', local_dir='/models/checkpoints/acestep-v15-base', token=os.environ.get('HF_TOKEN'))"
+RUN python -c "import os; from huggingface_hub import snapshot_download; snapshot_download('ACE-Step/acestep-v15-base', local_dir='/models/checkpoints/acestep-v15-base', token=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)"
 
 # Optional: Download additional LM models (uncomment if needed)
 # RUN python -c "from huggingface_hub import snapshot_download; snapshot_download('ACE-Step/acestep-5Hz-lm-0.6B', local_dir='/models/checkpoints/acestep-5Hz-lm-0.6B')"
